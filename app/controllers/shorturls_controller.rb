@@ -1,7 +1,8 @@
 class ShorturlsController < ApplicationController
 
   def index
-    @shorturls = Shorturl.all
+    # never all
+    @shorturls = Shorturl.page(params[:page])
   end
 
   def create

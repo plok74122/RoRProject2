@@ -1,18 +1,23 @@
 <%= form_for Shorturl.new, :url => shorturls_path do |f| %>
-  <%= f.label :url, "Enter the url:" %>
-  <%= f.url_field :url %>
+    <%= f.label :url, "Enter the url:" %>
+    <%= f.url_field :url %>
 
-  <%= f.submit "Submit" %>
+    <%= f.submit "Submit" %>
 <% end %>
 <% if @shorturls.exists? %>
-<table border="1">
-  <tr><td>網址</td><td>短網址</td><td>點擊次數</td></tr>
-  <% @shorturls.each do |shorturl| %>
-  <tr>
-    <td><%= shorturl.url %></td>
-    <td><%= link_to "短網址", redirect_path(:q => shorturl.short_url) %></td>
-    <td><%= shorturl.convert_num %></td>
-  </tr>
-  <% end %>
-</table>
+    <table border="1">
+      <tr>
+        <td>網址</td>
+        <td>短網址</td>
+        <td>點擊次數</td>
+      </tr>
+      <% @shorturls.each do |shorturl| %>
+          <tr>
+            <td><%= shorturl.url %></td>
+            <td><%= link_to "短網址", redirect_path(:q => shorturl.short_url) %></td>
+            <td><%= shorturl.convert_num %></td>
+          </tr>
+      <% end %>
+    </table>
 <% end %>
+<%= paginate @shorturls %>

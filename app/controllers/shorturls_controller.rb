@@ -20,7 +20,7 @@ class ShorturlsController < ApplicationController
     if params.has_key?(:q)
       url = Shorturl.find_by(:short_url => params[:q])
       if url
-        url.update(:convert_num => url.convert_num + 1)
+        url.increment(:convert_num).save
         redirect_to url.url
       else
         flash[:alert] = "參數q錯誤"

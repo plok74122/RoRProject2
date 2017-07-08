@@ -1,4 +1,9 @@
-<%= form_for Shorturl.new, :url => shorturls_path do |f| %>
+<%= form_for @shorturl, :url => shorturls_path do |f| %>
+    <% if @shorturl.errors.any? %>
+        <% @shorturl.errors.full_messages.each do |msg| %>
+            <li style="color:red"><%= msg %></li>
+        <% end %>
+    <% end %>
     <%= f.label :url, "Enter the url:" %>
     <%= f.url_field :url %>
 
